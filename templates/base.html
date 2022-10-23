@@ -4,10 +4,15 @@
 
     </head>
     <body>
-    <h1>HEllo WORLD</h1>
-    {%block content %}
-    <h3>THIS WILL BNE REPLACED</h3>
-    {%endblock content %}
+        <h1>Hello World</h1>
+        <form action='/articles/' method='GET'>
+            <input type='text' name='query' />
+            <input type='submit' />
+        </form>
+
+        {% block content %}
+        <h3>This will be replaced</h3>
+        {% endblock content %}
 
     </body>
 </html>

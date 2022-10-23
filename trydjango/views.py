@@ -3,20 +3,27 @@ import random
 from articles.models import Article
 from django.template.loader import render_to_string
 
-def home_view(request):
-    number = random.randint(1,3)
-    article_obj = Article.objects.get(id=number)
-    article_qs = Article.objects.all()
+
+def article_home_view(request):
+    return HttpResponse
+
+
+def home_view(request, *args, **kwargs):
+    """
+    Take in a request (Django sends request)
+    Return HTML as a response (We pick to return the response)
+    """
+    print(id)
+    random_id = random.randint(1, 3)  # pseudo random
+    article_obj = Article.objects.get(id=random_id)
+    article_queryset = Article.objects.all()
     context = {
-        "object_list": article_qs,
-        'object': article_obj,
-        "title" : article_obj.title,
-        "id" : article_obj.id,
-        'content': article_obj.content
+        "object_list": article_queryset,
+        "object": article_obj,
+        "title": article_obj.title,
+        "id": article_obj.id,
+        "content": article_obj.content
     }
-    HTML_STRING = render_to_string('home-view.html', context = context)
-    #HTML_STRING = """
-    #<h1>{title}(id: {id})</h1>
-    #<p>{content}</p>
-    #""".format(**context)
+    # Django Templates
+    HTML_STRING = render_to_string("home-view.html", context=context)
     return HttpResponse(HTML_STRING)
