@@ -11,6 +11,8 @@ def main():
     # if DOT_ENV_PATH.exists():
     #     dotenv.read_dotenv(str(DOT_ENV_PATH))
     # os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'trydjango.settings')
+    dotenv.read_dotenv()
+    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'trydjango.settings')
     try:
         from django.core.management import execute_from_command_line
     except ImportError as exc:
